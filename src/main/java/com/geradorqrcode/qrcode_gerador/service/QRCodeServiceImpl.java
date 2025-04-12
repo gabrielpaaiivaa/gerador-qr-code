@@ -16,20 +16,16 @@ import java.util.Base64;
 public class QRCodeServiceImpl implements QRCodeService{
 
     @Override
-    public String gerarQRCode(QRCodeRequestDTO dto) {
+    public String gerarQRCode(String conteudo) {
         try {
-            String texto = dto.getConteudo();
-
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix matrix = qrCodeWriter.encode(texto, BarcodeFormat.QR_CODE, 250, 250);
+            BitMatrix matrix = qrCodeWriter.encode(conteudo, BarcodeFormat.QR_CODE, 250, 250);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(matrix, "PNG", outputStream);
 
             byte[] qrCodeBytes = outputStream.toByteArray();
-            String base64 = Base64.getEncoder().encodeToString(qrCodeBytes);
-
-            return base64;
+            return Base64.getEncoder().encodeToString(qrCodeBytes);
 
         } catch (WriterException | IOException e){
             throw new RuntimeException("Erro ao gerar QR Code", e);
