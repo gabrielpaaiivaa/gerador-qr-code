@@ -77,4 +77,4 @@ Se quiser sugerir melhorias ou abrir issues, fique à vontade.
 ## 🧑‍💻 Autor
 Gabriel Paiva
 Desenvolvido por **Gabriel**  
-🚀 GitHub: [seu-usuario](https://github.com/gabrielpaaiivaa)
+🚀 GitHub: [gabrielpaaiivaa](https://github.com/gabrielpaaiivaa)
