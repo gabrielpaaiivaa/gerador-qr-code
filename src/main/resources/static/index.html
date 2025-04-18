@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gerador de QR Code</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
 </head>
 <body>
-
 <div class="container">
     <h1>Gerador de QR Code</h1>
-    <input type="text" id="url" placeholder="Digite a URL para gerar o QR Code">
+
+    <input type="text" id="conteudo" placeholder="Digite o conteúdo para o QR Code">
     <button onclick="gerarQRCode()">Gerar QR Code</button>
 
-    <div id="qrCodeContainer">
-        <img id="qrCodeImg" alt="QR Code" style="display: none;">
-        <a id="downloadLink" href="" download="qrcode.png" style="display: none;">Baixar QR Code</a>
-    </div>
+    <div id="qrcode"></div>
+
+    <button id="downloadBtn" style="display: none;">⬇ Baixar QR Code</button>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>

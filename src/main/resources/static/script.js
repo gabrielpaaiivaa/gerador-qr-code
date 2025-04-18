@@ -1,34 +1,32 @@
 function gerarQRCode() {
-    const url = document.getElementById("url").value;
+  const conteudo = document.getElementById("conteudo").value;
+  const qrcodeDiv = document.getElementById("qrcode");
+  const downloadBtn = document.getElementById("downloadBtn");
 
-    if (!url) {
-        alert("Por favor, digite uma URL!");
-        return;
+  if (!conteudo) {
+    alert("Digite algum conteúdo!");
+    return;
+  }
+
+  qrcodeDiv.innerHTML = "";
+  downloadBtn.style.display = "none";
+
+  QRCode.toDataURL(conteudo, { width: 250, margin: 2 }, function (err, url) {
+    if (err) {
+      console.error(err);
+      return;
     }
 
-    // Enviar a URL para o backend e gerar o QR Code
-    fetch('http://localhost:8080/qrcode', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ conteudo: url })
-    })
-    .then(response => response.json())
-    .then(data => {
-        const imagemBase64 = data.imagemBase64;
+    const img = document.createElement("img");
+    img.src = url;
+    qrcodeDiv.appendChild(img);
 
-        // Exibir o QR Code gerado
-        const qrCodeImg = document.getElementById("qrCodeImg");
-        qrCodeImg.src = "data:image/png;base64," + imagemBase64;
-        qrCodeImg.style.display = "block";
-
-        // Criar o link de download
-        const downloadLink = document.getElementById("downloadLink");
-        downloadLink.href = qrCodeImg.src;
-        downloadLink.style.display = "inline-block";
-    })
-    .catch(error => {
-        console.error("Erro ao gerar o QR Code:", error);
-    });
+    downloadBtn.style.display = "inline-block";
+    downloadBtn.onclick = function () {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "qrcode.png";
+      a.click();
+    };
+  });
 }
