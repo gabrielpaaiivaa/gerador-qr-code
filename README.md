@@ -36,7 +36,7 @@ cd gerador-qrcode
 ```
 
 3. O backend estará disponível em:  
-`http://localhost:8080/qrcode`
+`http://localhost:8080`
 
 4. Teste a API no Swagger:  
 `http://localhost:8080/swagger-ui/index.html`
